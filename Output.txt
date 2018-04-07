@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------
+/* Reads input @CD*/
+void ReadInput()
+{
+    ifstream fi(CD);
+    if (!fi.is_open()) 
+    {
+         return; 
+    }
+    int nA;
+    fi >> nA;
+    N.add(nA);
+    int nr, pl, sk, telnr;
+    float price;
+    for (int i = 0; i < nA; i++)
+    {
+        Floor aTemp;
+        for (int j = 0; j < 3; j++)
+        {
+            fi >> nr >> pl >> sk >> price >> telnr;
+            Room temp = Room(nr, pl, sk, telnr, price);
+            aTemp.addRoom(temp, j);
+        }
+        N.add(aTemp, i);
+    }
+    fi.close();
+}
